@@ -15,7 +15,7 @@
   "nics": [
     {
       "nic_tag": "admin",
-      "ip": "192.168.10.30",
+      "ip": "192.168.10.34",
       "netmask": "255.255.255.0",
       "gateway": "192.168.10.254",
       "allow_restricted_traffic": true,
@@ -25,6 +25,6 @@
     }
   ],
   "customer_metadata": {
-    "user-script": "curl -O"
+    "user-script": "`which curl` -k -O https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/init.sh && `which chmod u+x` init.sh && bash init.sh dhcp"
   }
 }
