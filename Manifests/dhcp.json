@@ -1,0 +1,30 @@
+{
+  "brand": "joyent-minimal",
+  "image_uuid": "8639203c-d515-11e3-9571-5bf3a74f354f",
+  "autoboot": true,
+  "alias": "dhcp",
+  "hostname": "dhcp",
+  "dns_domain": "madacs.local",
+  "resolvers": [
+    "192.168.1.125"
+  ],
+  "max_physical_memory": 1024,
+  "max_swap": 1024,
+  "quota": 20,
+  "firewall_enabled": true,
+  "nics": [
+    {
+      "nic_tag": "admin",
+      "ip": "192.168.10.30",
+      "netmask": "255.255.255.0",
+      "gateway": "192.168.10.254",
+      "allow_restricted_traffic": true,
+      "allow_ip_spoofing": true,
+      "allow_mac_spoofing": true,
+      "allow_dhcp_spoofing": true
+    }
+  ],
+  "customer_metadata": {
+    "user-script": "curl -O"
+  }
+}
