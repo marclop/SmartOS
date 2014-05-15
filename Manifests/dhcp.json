@@ -25,6 +25,6 @@
     }
   ],
   "customer_metadata": {
-    "user-script": "`which curl` -k -O https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/init.sh && `which chmod u+x` init.sh && bash init.sh dhcp"
+    "user-script": "`which curl` -k -O https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/init.sh && `which chmod u+x` init.sh && bash init.sh dhcp >/var/svc/setup.log 2>&1 &"
   }
 }
