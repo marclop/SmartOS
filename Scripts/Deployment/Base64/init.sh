@@ -5,13 +5,16 @@
 #Date 15/05/2014
 
 #Set up the env
+choice=$1
 PATH=/usr/local/sbin:/usr/local/bin:/opt/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin
 curl -k -o /opt/local/lib/svc/manifest/ssh.xml https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/ssh.xml
 curl -k -O  https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/pw.sh && chmod u+x pw.sh
 tz="Europe/Madrid"
 
 #Set packages to install, Update repository and upgrade all system packages
-pkgin up && pkgin -y fug pkgin -y in tcl-expect
+pkgin up
+pkgin -y fug 
+pkgin -y in tcl-expect
 
 #Set Timezone
 sm-set-timezone $tz
