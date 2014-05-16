@@ -3,12 +3,13 @@
 #Initial script to set the initial environment for the Smartos Base 64-Bit Zone
 #Author: Marc López Rubio
 #Date 15/05/2014
+#Modified: 16/05/2014
 
 #Set up the env
 choice=$1
 PATH=/usr/local/sbin:/usr/local/bin:/opt/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin
 curl -k -o /opt/local/lib/svc/manifest/ssh.xml https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/ssh.xml
-curl -k -O  https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/pw && chmod u+x pw
+curl -k -O  https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/Base64/pw.sh && chmod u+x pw.sh
 tz="Europe/Madrid"
 
 #Set packages to install, Update repository and upgrade all system packages
@@ -28,7 +29,7 @@ echo "colorscheme desert" >> /etc/skel/.vimrc
 #For more information on pw.sh script look at the sources
 for i in root admin
 	do
-		./pw $i
+		./pw.sh $i
 	done
 
 #Import and enable the ssh.xml manifest for SSH support
@@ -38,8 +39,9 @@ svcadm enable ssh
 #Build desired image from packets
 case $choice in
 	dhcp)
-		curl -k -O  https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/isc-dhcp/init_dhcp && chmod u+x init_dhcp
-		./init_dhcp
+		curl -k -O  https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/isc-dhcp/init_dhcp.sh && chmod u+x init_dhcp.sh
+		curl -k -o /etc/motd https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/isc-dhcp/motd
+		./init_dhcp.sh
 		;;
 	*)
 		echo $"Usage: $0 {dhcp|rails}"
