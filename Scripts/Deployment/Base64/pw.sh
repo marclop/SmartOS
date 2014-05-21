@@ -1,24 +1,19 @@
-#!/usr/bin/bash
+#!/opt/local/bin/expect
 #
-#
-#Password script to set the a random password to the desired user
 #Author: Marc López Rubio
 #Date 15/05/2014
+#Modified 20/05/2014
 
+#Password script to set the a random password to the desired user
+#Expects you to send the USERNAME as the 1st argument and the password as the second one
 
-export user=$1
-export pass=` date +%s | sha256sum | base64 | head -c 32`
-
-mdata-put $user\_pw $pass
-sleep 1
-
-expect<<EOF 
 package require Expect
 
+#Variable declaration
 set user [lindex $argv 0]
-#set password "Smartos2014"
 set password [lindex $argv 1]
 
+#Actual script code
 spawn passwd $user
 expect "New Password:" { send "$password\r" }
 expect "Re-enter new Password:" { send "$password\r" }
@@ -26,5 +21,3 @@ expect -exact "\r
 passwd: password successfully changed for $user\r"
 send -- ""
 expect eof
-
-EOF

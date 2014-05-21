@@ -27,10 +27,17 @@ echo "colorscheme desert" >> /etc/skel/.vimrc
 
 #Set root and admin passowrd accounts to a 32 character random string and sets it to the Zone Internal Metadata
 #For more information on pw.sh script look at the sources
-for i in root admin
-	do
-		./pw.sh $i
-	done
+users="root admin"
+
+for i in $users; do
+		#Generate a password from the actual date
+        passw=`date +%s | sha256sum | base64 | head -c 32`
+
+        ./pw.sh $i $passw
+        mdata-put $i\_pw $passw
+		#Sleep one second to get a differen password for the next user
+		sleep 1
+done
 
 #Import and enable the ssh.xml manifest for SSH support
 svccfg import /opt/local/lib/svc/manifest/ssh.xml
@@ -42,6 +49,7 @@ case $choice in
 		curl -k -O  https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/isc-dhcp/init_dhcp.sh && chmod u+x init_dhcp.sh
 		curl -k -o /etc/motd https://raw.githubusercontent.com/marclop/SmartOS/master/Scripts/Deployment/isc-dhcp/motd
 		./init_dhcp.sh
+		rm init_dhcp.sh pw.sh
 		;;
 	*)
 		echo $"Usage: $0 {dhcp|rails}"
