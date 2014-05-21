@@ -3,7 +3,7 @@
 #Initial script to set the initial environment for the Smartos Base 64-Bit Zone
 #Author: Marc López Rubio
 #Date 15/05/2014
-#Modified: 16/05/2014
+#Modified: 20/05/2014
 
 #Set up the env
 choice=$1
