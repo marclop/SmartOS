@@ -55,3 +55,6 @@ case $choice in
 		echo $"Usage: $0 {dhcp|rails}"
 		exit 1
 esac
+
+#AutoErase itself :)
+rm -- "$0" && exit 0
