@@ -1,5 +1,5 @@
 {
-  "brand": "joyent-minimal",
+  "brand": "joyent",
   "image_uuid": "8639203c-d515-11e3-9571-5bf3a74f354f",
   "autoboot": true,
   "alias": "dhcp",
