@@ -13,7 +13,7 @@ binname=$0
 s3cfgurl=/opt/custom/s3cfgurl.txt
 cfgurl=`cat $s3cfgurl`
 restorepath=/opt/restore
-s3bucket='s3://splbacks'
+s3bucket='s3://BUCKET'
 StorageUsed=0
 
 # Check if pip is installed, if not, install it
